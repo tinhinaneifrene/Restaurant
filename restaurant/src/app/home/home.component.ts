@@ -9,6 +9,8 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
+  pasta ='/assets/images/pasta.jpg';
+
   ngOnInit(): void {
   }
 
