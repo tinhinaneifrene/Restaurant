@@ -14,7 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 
 import {Routes,Router, RouterModule } from '@angular/router' ;
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule , FormsModule} from '@angular/forms'
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,6 +29,13 @@ import { RestaurantTableComponent } from './restaurant-table/restaurant-table.co
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDatepicker} from '@angular/material/datepicker';
+import {MatSelectModule} from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 const routes : Routes =[
   { path:"", component:HomeComponent},
@@ -63,19 +70,24 @@ const routes : Routes =[
     MatListModule,
     MatCardModule,
     MatDividerModule,
-     
-    RouterModule.forRoot(routes),
+    MatInputModule,
+    MatFormFieldModule,
      
     MatGridListModule,
+    MatDatepickerModule,
      
     MatMenuModule,
     ReactiveFormsModule,
+    MatNativeDateModule,
      
     MatTableModule,
      
     MatPaginatorModule,
+    FormsModule,
+    MatSelectModule,
      
-    MatSortModule
+    MatSortModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent]

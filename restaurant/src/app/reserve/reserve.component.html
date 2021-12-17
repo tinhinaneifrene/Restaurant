@@ -1,16 +1,48 @@
-<form [formGroup]= "reservationForm">
-    <input type="date" formControlName="date">
-    <select formControlName="time">
-        <option *ngFor="let to of timeOptions">
-            {{to}}
-        </option>
-    </select>
+<div *ngIf="!isReservation">
+    <form [formGroup]="reservationForm" (submit)="saveReservation()">
+        <mat-form-field  >
+    
+            <input matInput [matDatepicker]="picker" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker [startAt]="date"></mat-datepicker>
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-select formControlName="time" multiple>
+                <mat-option *ngFor="let to of timeOptions" [value]="to">{{to}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+            
+        <mat-form-field>
+            <mat-select formControlName="people" multiple>
+                <mat-option *ngFor="let po of peopleOptions" [value]="po">{{po}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-button type="submit"> valider la réservation </button>
+      
+    </form>
+</div>
 
-    <select formControlName="people">
-        <option *ngFor="let po of peopleOptions">
-            {{po}}
-        </option>
-    </select>
-</form>
+<div *ngIf="isReservation">
+    <form #f="ngForm" (submit)="finalizeReservation(f.value)">
+        <mat-form-field>
+            <input matInput type="text" name="firstName" [(ngModel)]="client.firstName" placeholder="prénom">
+        </mat-form-field>
 
-{{reservationForm.value | json}}
+        <mat-form-field>
+            <input matInput type="text" name="lastName" [(ngModel)]="client.lastName" placeholder="Nom">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="number" name="number" [(ngModel)]="client.telNumber" placeholder="votre numéro de telephone">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="text" name="email" [(ngModel)]="client.email" placeholder="email">
+        </mat-form-field>
+
+        <button mat-button type="submit"> réserver </button>
+
+    </form>
+</div>
+
